@@ -51,13 +51,13 @@ return y(a)==b?true:false
 function amod(a,b){
 return a-(Math.floor(a/b)*b)
 }
-function generateSample(Z,f,d,a,b,q,v,c,s) {
+function generateSample(Z,f,dn,a,b,q,v,c,s) {
 if (parseInt(s)>=1){
 return (flex[parseInt(s)-2][Z]-127)/127
 } else if (parseInt(s)==1){
   return ((amod(Z,(c?v:q/f))/f)*a)+b
 } else {
-  return amod(Z,(c?v:q/f))<=((c?v:q/f)*(d/100))?a+b:-a+b
+  return amod(Z,(c?v:q/f))<=((c?v:q/f)*(dn/100))?a+b:-a+b
 }
 }
 let audioContext = new AudioContext();

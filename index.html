@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html><head></head>
+<body>
+<input type="text" id="d"></input>d<br>
+<input type="text" id="f"></input>f<br>
+<input type="text" id="t"></input>t<br>
+<input type="text" id="q"></input>q<br>
+<input type="text" id="a"></input>a<br>
+<input type="text" id="b"></input>b<br>
+<input type="text" id="c"></input>c<br>
+<input type="text" id="v"></input>v<br>
+
+
+
+<button onclick="run()">
+start
+</button>
+<script>const REAL_TIME_FREQUENCY = 440;
+const ANGULAR_FREQUENCY = REAL_TIME_FREQUENCY * 2 * Math.PI;
+function z(a){
+return parseFloat(document.getElementById(a).value)
+}
+function y(a){
+return document.getElementById(a).value
+}
+function amod(a,b){
+return a-(Math.floor(a/b)*b)
+}
+function generateSample(sampleNumber,f,d,a,b) {
+  let currentTime = sampleNumber / z("q");
+  let currentAngle = currentTime * ANGULAR_FREQUENCY;
+  return amod(sampleNumber,(y("c")=="yes"?z("v"):z("q")/f))<=((y("c")=="yes"?z("v"):z("q")/f)*(d/100))?a+b:-a+b
+}
+let audioContext = new AudioContext();
+function run(){
+let myBuffer = audioContext.createBuffer(1, z("t"), z("q"));
+let myArray = myBuffer.getChannelData(0);
+for (let sampleNumber = 0 ; sampleNumber < z("t"); sampleNumber++) {
+  myArray[sampleNumber] = generateSample(sampleNumber,z("f"),z("d"),z("a"),z("b"));
+}
+
+
+let src = audioContext.createBufferSource();
+src.buffer = myBuffer;
+src.connect(audioContext.destination);
+src.start();
+}</script>
+</body>
+</html>

@@ -1,42 +1,64 @@
 <!DOCTYPE html>
 <html><head></head>
 <body>
-<input type="text" id="d"></input>duty cycle (in percent)<br>
-<input type="text" id="f"></input>frequency (ignored if custom value used)<br>
-<input type="text" id="t"></input>time (in samples)<br>
-<input type="text" id="q"></input>sample rate<br>
-<input type="text" id="a"></input>amplitude<br>
-<input type="text" id="b"></input>dc bias (1=100%)<br>
-<input type="text" id="c"></input>custom value used (type yes to enable)<br>
-<input type="text" id="v"></input>custom value (ignored if custom value used box does not say "yes")<br>
-
+<input type="text" id="d"><span id="dh">duty cycle (in percent)<br></span></input>
+<input type="text" id="f">frequency (ignored if custom value used)<br></input>
+<input type="text" id="t">time (in samples)<br></input>
+<input type="text" id="q">sample rate<br></input>
+<input type="text" id="a">amplitude<br></input>
+<input type="text" id="b">dc bias (1=100%)<br></input>
+<input type="text" id="c">custom value used (type yes to enable)<br></input>
+<input type="text" id="v">custom value (ignored if custom value used box does not say "yes")<br></input>
+<input type="number" id="z" onchange="B()">z<br></input>
 
 
 <button onclick="run()">
 start
 </button>
 <script>const REAL_TIME_FREQUENCY = 440;
+flex=[family18s,tapeClear,glue,family17h,family17s,family17,tape,family16h,sealLiquid,blastOff,seal,foamazing,slickFix,sealColorsVersusSprayPaint,sealOnBucket,sealColorsSub,shot,sealClear]
+function B(){
+D=C("z","1")
+if (D){
+A("d").hidden=true
+A("dh").hidden=true
+}else{
+A("d").hidden=false
+A("dh").hidden=false
+}}
 const ANGULAR_FREQUENCY = REAL_TIME_FREQUENCY * 2 * Math.PI;
 function z(a){
 return parseFloat(document.getElementById(a).value)
 }
+function A(a){
+return document.getElementById(a)
+}
 function y(a){
 return document.getElementById(a).value
+}
+function x(a){
+return y(a)=="on"?true:y(a)=="yes"?true:false
+}
+function C(a,b){
+return y(a)==b?true:false
 }
 function amod(a,b){
 return a-(Math.floor(a/b)*b)
 }
-function generateSample(sampleNumber,f,d,a,b) {
-  let currentTime = sampleNumber / z("q");
-  let currentAngle = currentTime * ANGULAR_FREQUENCY;
-  return amod(sampleNumber,(y("c")=="yes"?z("v"):z("q")/f))<=((y("c")=="yes"?z("v"):z("q")/f)*(d/100))?a+b:-a+b
+function generateSample(Z,f,d,a,b,q,v,c,s) {
+
+if (s){
+  return ((amod(Z,(c?v:q/f))/f)*a)+b
+} else {
+  return amod(Z,(c?v:q/f))<=((c?v:q/f)*(d/100))?a+b:-a+b
+}
 }
 let audioContext = new AudioContext();
 function run(){
 let myBuffer = audioContext.createBuffer(1, z("t"), z("q"));
 let myArray = myBuffer.getChannelData(0);
-for (let sampleNumber = 0 ; sampleNumber < z("t"); sampleNumber++) {
-  myArray[sampleNumber] = generateSample(sampleNumber,z("f"),z("d"),z("a"),z("b"));
+for (let F = 0 ; F < z("t"); F++) {
+  myArray[F] = generateSample(F,z("f"),z("d"),z("a"),z("b"),z("q"),z("v"),x("c"),D);
 }
 
 

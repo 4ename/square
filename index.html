@@ -50,7 +50,7 @@ return a-(Math.floor(a/b)*b)
 function generateSample(Z,f,d,a,b,q,v,c,s) {
 if (parseInt(s)>=1){
 return (flex[Z-2]-127)/127
-} else if (parseInt(s)=1){
+} else if (parseInt(s)==1){
   return ((amod(Z,(c?v:q/f))/f)*a)+b
 } else {
   return amod(Z,(c?v:q/f))<=((c?v:q/f)*(d/100))?a+b:-a+b
@@ -61,7 +61,7 @@ function run(){
 let myBuffer = audioContext.createBuffer(1, z("t"), z("q"));
 let myArray = myBuffer.getChannelData(0);
 for (let F = 0 ; F < z("t"); F++) {
-  myArray[F] = generateSample(F,z("f"),z("d"),z("a"),z("b"),z("q"),z("v"),x("c"),y("d"));
+  myArray[F] = generateSample(F,z("f"),z("d"),z("a"),z("b"),z("q"),z("v"),x("c"),y("z"));
 }
 
 

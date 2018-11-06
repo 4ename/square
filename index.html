@@ -10,22 +10,23 @@
 <input type="text" id="c">custom value used (type yes to enable)<br></input>
 <input type="text" id="v">custom value (ignored if custom value used box does not say "yes")<br></input>
 <input type="number" id="z" onchange="B()">z<br></input>
-
+<script src="/flextape.js"></script>
 
 <button onclick="run()">
 start
 </button>
 <script>const REAL_TIME_FREQUENCY = 440;
-flex=[family18s,tapeClear,glue,family17h,family17s,family17,tape,family16h,sealLiquid,blastOff,seal,foamazing,slickFix,sealColorsVersusSprayPaint,sealOnBucket,sealColorsSub,shot,sealClear]
+flex=[/*family18s,tapeClear,glue,family17h,family17s,family17,*/tape/*,family16h,sealLiquid,blastOff,seal,foamazing,slickFix,sealColorsVersusSprayPaint,sealOnBucket,sealColorsSub,shot,sealClear*/]
 function B(){
 D=C("z","1")
 if (D){
 A("d").hidden=true
-A("dh").hidden=true
-}else{
+A("dh").hidden=true}else{
 A("d").hidden=false
 A("dh").hidden=false
 }}
+
+
 const ANGULAR_FREQUENCY = REAL_TIME_FREQUENCY * 2 * Math.PI;
 function z(a){
 return parseFloat(document.getElementById(a).value)
@@ -46,8 +47,9 @@ function amod(a,b){
 return a-(Math.floor(a/b)*b)
 }
 function generateSample(Z,f,d,a,b,q,v,c,s) {
-
-if (s){
+if (parseInt(s)>=1){
+return flex[Z-2]
+} else if (parseInt(s)=1){
   return ((amod(Z,(c?v:q/f))/f)*a)+b
 } else {
   return amod(Z,(c?v:q/f))<=((c?v:q/f)*(d/100))?a+b:-a+b
@@ -58,7 +60,7 @@ function run(){
 let myBuffer = audioContext.createBuffer(1, z("t"), z("q"));
 let myArray = myBuffer.getChannelData(0);
 for (let F = 0 ; F < z("t"); F++) {
-  myArray[F] = generateSample(F,z("f"),z("d"),z("a"),z("b"),z("q"),z("v"),x("c"),D);
+  myArray[F] = generateSample(F,z("f"),z("d"),z("a"),z("b"),z("q"),z("v"),x("c"),y("d"));
 }
 
 

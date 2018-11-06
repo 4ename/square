@@ -10,15 +10,16 @@
 <input type="text" id="c">custom value used (type yes to enable)<br></input>
 <input type="text" id="v">custom value (ignored if custom value used box does not say "yes")<br></input>
 <input type="number" id="z" onchange="B()">z<br></input>
-<span>flex=[seal,sealOnBucket,sealColorsSub,shot,sealClear]</span>
+<span>flex=[sealOnBucket,sealColorsSub,shot,sealClear]</span>
 <script src="https://4ename.github.io/square/flextape.js"></script>
 <script src="https://4ename.github.io/square/flextapeclear.js"></script>
 <script src="https://4ename.github.io/square/sq.js"></script>
+<script src="https://4ename.github.io/square/seal.js"></script>
 <button onclick="run()">
 start
 </button>
 <script>const REAL_TIME_FREQUENCY = 440;
-flex=[tapeClear,tape,sealLiquid,undefined]
+flex=[tapeClear,tape,sealLiquid,seal,undefined]
 function B(){
 D=C("z","1")
 if (D){

@@ -55,7 +55,7 @@ function generateSample(Z,f,d,a,b,q,v,c,s) {
 if (parseInt(s)>2){
 return (flex[parseInt(s)-2][Z]-127)/127
 } else if (parseInt(s)==2){
- return amod(Z,Math.random())<=0.5?a+b:-a+b
+ return amod(Z,Math.random())<=d/100?a+b:-a+b
   } else if (parseInt(s)==1){
   return ((amod(Z,(c?v:q/f))/f)*a)+b
 } else {

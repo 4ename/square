@@ -53,7 +53,8 @@ return a-(Math.floor(a/b)*b)
 }
 function generateSample(Z,f,d,a,b,q,v,c,s) {
 if (parseInt(s)>2){
-return parseInt([flex[parseInt(s)-3][Z].slice(2),flex[parseInt(s)-3][Z].slice(0,2)].join()) & 0xffff
+var sam=parseInt([flex[parseInt(s)-3][Z].slice(2),flex[parseInt(s)-3][Z].slice(0,2)].join())
+return sam & 0x8000
 } else if (parseInt(s)==2){
  return amod(Z,Math.random())<=d/100?a+b:-a+b
   } else if (parseInt(s)==1){
